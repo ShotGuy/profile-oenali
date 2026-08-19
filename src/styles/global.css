@@ -48,6 +48,7 @@ body {
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
+  background-color: var(--neutral-50);
 }
 
 a {
@@ -141,7 +142,7 @@ p {
 }
 
 .section-alt {
-  background-color: var(--neutral-50);
+  background-color: var(--neutral-100);
 }
 
 .section-title-wrapper {

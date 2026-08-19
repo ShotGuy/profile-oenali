@@ -2,14 +2,7 @@
 // src/pages/galeri.astro
 import Layout from '../layouts/Layout.astro';
 
-const photos = [
-  { id: 1, category: "Kegiatan", label: "Musyawarah Pembentukan Desa" },
-  { id: 2, category: "Pembangunan", label: "Gotong Royong Pembukaan Jalan" },
-  { id: 3, category: "Alam", label: "Lanskap Perbukitan Oenali" },
-  { id: 4, category: "Kegiatan", label: "Bakti Sosial Kesehatan Gratis" },
-  { id: 5, category: "Pembangunan", label: "Pemasangan Pilar Batas Desa" },
-  { id: 6, category: "Alam", label: "Potensi Lahan Pertanian Desa" },
-];
+const photos = [];
 ---
 
 <Layout title="Galeri Foto">
@@ -32,20 +25,27 @@ const photos = [
         <button class="filter-btn">Keindahan Alam</button>
       </div>
 
-      <div class="gallery-grid">
-        {photos.map(photo => (
-          <div class="gallery-item">
-            <div class="gallery-image-placeholder">
-              <span class="gallery-icon">📷</span>
-              <span class="gallery-category-badge">{photo.category}</span>
+      {photos.length === 0 ? (
+        <div class="no-photos">
+          <span class="no-photos-icon">📷</span>
+          <p>Belum ada dokumentasi foto yang diunggah saat ini.</p>
+        </div>
+      ) : (
+        <div class="gallery-grid">
+          {photos.map(photo => (
+            <div class="gallery-item">
+              <div class="gallery-image-placeholder">
+                <span class="gallery-icon">📷</span>
+                <span class="gallery-category-badge">{photo.category}</span>
+              </div>
+              <div class="gallery-info">
+                <h3>{photo.label}</h3>
+                <p>Dokumentasi Desa Oenali</p>
+              </div>
             </div>
-            <div class="gallery-info">
-              <h3>{photo.label}</h3>
-              <p>Dokumentasi Desa Oenali</p>
-            </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   </section>
 </Layout>
@@ -161,5 +161,27 @@ const photos = [
     font-size: 0.85rem;
     color: var(--neutral-600);
     margin-bottom: 0;
+  }
+
+  /* No Photos Fallback Styling */
+  .no-photos {
+    text-align: center;
+    padding: 5rem 2rem;
+    background-color: var(--neutral-50);
+    border-radius: 1rem;
+    border: 1px dashed rgba(226, 232, 240, 1);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .no-photos-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .no-photos p {
+    font-size: 1.1rem;
+    color: var(--neutral-600);
+    margin: 0;
   }
 </style>

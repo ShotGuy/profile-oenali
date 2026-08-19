@@ -3,28 +3,11 @@
 import Layout from '../layouts/Layout.astro';
 import StatsCard from '../components/StatsCard.astro';
 import NewsCard from '../components/NewsCard.astro';
+import { getCollection } from 'astro:content';
 
-// Placeholder data berita
-const recentNews = [
-  {
-    title: "Sosialisasi Pemekaran dan Batas Wilayah Desa Persiapan Oenali",
-    date: "15 Agustus 2026",
-    summary: "Pemerintah Desa Induk bersama Penjabat Kepala Desa Persiapan Oenali menyelenggarakan sosialisasi penetapan pilar batas wilayah administratif guna kelancaran proses definitif desa.",
-    url: "/berita",
-  },
-  {
-    title: "Musyawarah Warga Terkait Rencana Pembangunan Kantor Desa Sementara",
-    date: "10 Agustus 2026",
-    summary: "Warga Desa Persiapan Oenali sepakat melakukan gotong royong dalam penyiapan lahan untuk mendirikan gedung operasional pelayanan administrasi masyarakat.",
-    url: "/berita",
-  },
-  {
-    title: "Kegiatan Bakti Sosial dan Pemeriksaan Kesehatan Gratis Warga Oenali",
-    date: "05 Agustus 2026",
-    summary: "Sebagai wujud kepedulian terhadap kesejahteraan masyarakat di wilayah pemekaran baru, diadakan layanan cek kesehatan gratis di posko terpadu desa.",
-    url: "/berita",
-  }
-];
+const allNews = await getCollection('berita');
+// Mengambil maksimal 3 berita terbaru
+const recentNews = allNews.slice(0, 3);
 ---
 
 <Layout title="Beranda">
@@ -69,9 +52,50 @@ const recentNews = [
           "Meskipun saat ini status administrasi kita masih dalam tahap persiapan, semangat kebersamaan dan gotong royong kita harus tetap kuat untuk segera menyusul menjadi desa definitif yang maju dan mandiri."
         </p>
         <span class="leader-signature">
-          <strong>Yohanis L. Doe, S.Sos</strong>
+          <strong>Musa Faot, S.H</strong>
           <span class="leader-title">Penjabat Kepala Desa Persiapan Oenali</span>
         </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lokasi Kantor Desa -->
+  <section class="section location-section">
+    <div class="container location-container">
+      <div class="location-info">
+        <span class="badge">Lokasi Strategis</span>
+        <h2>Kantor Desa Persiapan Oenali</h2>
+        <p>
+          Kantor pelayanan administrasi sementara Desa Persiapan Oenali berlokasi strategis untuk memudahkan akses bagi seluruh warga.
+        </p>
+        <div class="location-details">
+          <div class="loc-detail-item">
+            <span class="loc-icon">📍</span>
+            <div>
+              <h4>Alamat Kantor</h4>
+              <p>Mnelalete, Kec. Amanuban Barat, Kab. Timor Tengah Selatan, Nusa Tenggara Timur</p>
+            </div>
+          </div>
+          <div class="loc-detail-item">
+            <span class="loc-icon">⏰</span>
+            <div>
+              <h4>Jam Layanan</h4>
+              <p>Senin - Jumat | 08.00 - 14.00 WITA</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="location-map">
+        <!-- Google Map Embed Mnelalete -->
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15707.352403204917!2d124.25841645!3d-9.85554615!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2c56073b64c01777%3A0xe21287955ba9cb3e!2sMnelalete%2C%20Kec.%20Amanuban%20Bar.%2C%20Kabupaten%20Timor%20Tengah%20Selatan%2C%20Nusa%20Tenggara%20Tim.!5e0!3m2!1sid!2sid!4v1724046123456!5m2!1sid!2sid" 
+          width="100%" 
+          height="350" 
+          style="border:0; border-radius: 1rem; box-shadow: var(--shadow-md);" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
       </div>
     </div>
   </section>
@@ -85,10 +109,10 @@ const recentNews = [
       </div>
 
       <div class="stats-grid">
-        <StatsCard value="1,240" label="Total Penduduk" icon="👥" />
-        <StatsCard value="312" label="Kepala Keluarga (KK)" icon="🏠" />
+        <StatsCard value="2.579 Jiwa" label="Jumlah Penduduk" icon="👥" />
+        <StatsCard value="417 KK" label="Jumlah Kepala Keluarga (KK)" icon="🏠" />
         <StatsCard value="12.5 km²" label="Luas Wilayah" icon="🗺️" />
-        <StatsCard value="4" label="Dusun/RT Sementara" icon="📍" />
+        <StatsCard value="4 Dusun" label="Jumlah Dusun" icon="📍" />
       </div>
     </div>
   </section>
@@ -101,18 +125,25 @@ const recentNews = [
         <p class="section-subtitle">Ikuti berita, pengumuman terbaru, dan progres kegiatan kemasyarakatan kami.</p>
       </div>
 
-      <div class="news-grid">
-        {recentNews.map(news => (
-          <NewsCard 
-            title={news.title}
-            date={news.date}
-            summary={news.summary}
-            url={news.url}
-          />
-        ))}
-      </div>
+      {recentNews.length === 0 ? (
+        <div class="no-news" style="text-align: center; padding: 4rem 2rem; background: var(--neutral-50); border: 1px dashed rgba(226, 232, 240, 1); border-radius: 1rem; box-shadow: var(--shadow-sm);">
+          <span style="font-size: 3rem; display: block; margin-bottom: 1rem;">📭</span>
+          <p style="color: var(--neutral-600); margin: 0; font-weight: 500;">Belum ada kabar atau berita terbaru yang diterbitkan saat ini.</p>
+        </div>
+      ) : (
+        <div class="news-grid">
+          {recentNews.map(news => (
+            <NewsCard 
+              title={news.data.title}
+              date={news.data.date}
+              summary={news.data.summary}
+              url={`/berita/${news.slug}`}
+            />
+          ))}
+        </div>
+      )}
 
-      <div class="center-button-wrapper">
+      <div class="center-button-wrapper" style="margin-top: 3rem;">
         <a href="/berita" class="btn btn-secondary">Lihat Semua Berita</a>
       </div>
     </div>
@@ -261,9 +292,58 @@ const recentNews = [
     justify-content: center;
   }
 
+  /* Location Section Styles */
+  .location-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .location-info h2 {
+    font-size: 2.25rem;
+    color: var(--primary-dark);
+    margin: 1rem 0 1.5rem 0;
+  }
+
+  .location-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .loc-detail-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .loc-icon {
+    font-size: 1.5rem;
+    background-color: rgba(21, 128, 61, 0.08);
+    width: 45px;
+    height: 45px;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .loc-detail-item h4 {
+    margin-bottom: 0.25rem;
+    color: var(--neutral-900);
+  }
+
+  .loc-detail-item p {
+    color: var(--neutral-600);
+    margin-bottom: 0;
+  }
+
   /* Responsive breakpoints */
   @media (max-width: 992px) {
-    .hero-container {
+    .hero-container, .location-container {
       grid-template-columns: 1fr;
       text-align: center;
       gap: 3rem;
@@ -287,6 +367,16 @@ const recentNews = [
       border-left: none;
       padding-left: 0;
       align-items: center;
+    }
+
+    .location-details {
+      align-items: center;
+    }
+
+    .loc-detail-item {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
     }
   }
 </style>
