@@ -7,7 +7,7 @@ const currentYear = new Date().getFullYear();
   <div class="container footer-grid">
     <div class="footer-brand">
       <div class="logo-wrapper">
-        <span class="logo-icon">🌿</span>
+        <img src="/logo.jpg" alt="Logo Desa Oenali" class="logo-img" />
         <span class="village-name">DESA OENALI</span>
       </div>
       <p class="brand-desc">
@@ -82,8 +82,10 @@ const currentYear = new Date().getFullYear();
     margin-bottom: 1.5rem;
   }
 
-  .logo-icon {
-    font-size: 1.75rem;
+  .logo-img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
   }
 
   .village-name {
