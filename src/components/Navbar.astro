@@ -1,0 +1,203 @@
+---
+// src/components/Navbar.astro
+---
+
+<header class="navbar">
+  <div class="container navbar-container">
+    <a href="/" class="logo-wrapper">
+      <span class="logo-icon">🌿</span>
+      <div class="logo-text">
+        <span class="village-name">DESA OENALI</span>
+        <span class="village-status">Desa Persiapan</span>
+      </div>
+    </a>
+
+    <button class="mobile-toggle" aria-label="Toggle Menu" id="mobile-menu-toggle">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <nav class="nav-menu" id="nav-menu">
+      <a href="/" class="nav-link">Beranda</a>
+      <a href="/tentang" class="nav-link">Tentang Kami</a>
+      <a href="/berita" class="nav-link">Kabar Desa</a>
+      <a href="/layanan" class="nav-link">Layanan & FAQ</a>
+      <a href="/galeri" class="nav-link">Galeri</a>
+      <a href="/layanan#kontak" class="btn btn-primary btn-sm-nav">Hubungi Kami</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    height: var(--header-height);
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+    display: flex;
+    align-items: center;
+    transition: var(--transition-smooth);
+  }
+
+  .navbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .logo-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .logo-icon {
+    font-size: 2rem;
+  }
+
+  .logo-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .village-name {
+    font-weight: 800;
+    font-size: 1.15rem;
+    color: var(--primary-dark);
+    letter-spacing: 0.05em;
+    line-height: 1.2;
+  }
+
+  .village-status {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .nav-link {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--neutral-700);
+    position: relative;
+    padding: 0.5rem 0;
+  }
+
+  .nav-link:hover {
+    color: var(--primary);
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary);
+    transition: var(--transition-smooth);
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  .btn-sm-nav {
+    padding: 0.5rem 1.25rem;
+    font-size: 0.9rem;
+  }
+
+  /* Mobile menu button */
+  .mobile-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
+  }
+
+  .mobile-toggle .bar {
+    width: 100%;
+    height: 3px;
+    background-color: var(--neutral-900);
+    border-radius: 2px;
+    transition: var(--transition-smooth);
+  }
+
+  /* Responsive styling */
+  @media (max-width: 768px) {
+    .mobile-toggle {
+      display: flex;
+    }
+
+    .nav-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 80%;
+      max-width: 300px;
+      height: 100vh;
+      background-color: var(--neutral-50);
+      box-shadow: var(--shadow-lg);
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 6rem 2rem 2rem 2rem;
+      gap: 2rem;
+      transition: var(--transition-smooth);
+    }
+
+    .nav-menu.active {
+      right: 0;
+    }
+
+    .mobile-toggle.active .bar:nth-child(1) {
+      transform: translateY(9px) rotate(45deg);
+    }
+
+    .mobile-toggle.active .bar:nth-child(2) {
+      opacity: 0;
+    }
+
+    .mobile-toggle.active .bar:nth-child(3) {
+      transform: translateY(-9px) rotate(-45deg);
+    }
+  }
+</style>
+
+<script>
+  const toggleBtn = document.getElementById('mobile-menu-toggle');
+  const navMenu = document.getElementById('nav-menu');
+
+  if (toggleBtn && navMenu) {
+    toggleBtn.addEventListener('click', () => {
+      toggleBtn.classList.toggle('active');
+      navMenu.classList.toggle('active');
+    });
+
+    // Close menu when clicking links
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        toggleBtn.classList.remove('active');
+        navMenu.classList.remove('active');
+      });
+    });
+  }
+</script>

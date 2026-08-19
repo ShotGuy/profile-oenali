@@ -1,0 +1,74 @@
+---
+// src/components/StatsCard.astro
+interface Props {
+  value: string;
+  label: string;
+  icon: string;
+}
+
+const { value, label, icon } = Astro.props;
+---
+
+<div class="stats-card">
+  <div class="stats-icon-wrapper">
+    <span class="stats-icon">{icon}</span>
+  </div>
+  <div class="stats-info">
+    <span class="stats-value">{value}</span>
+    <span class="stats-label">{label}</span>
+  </div>
+</div>
+
+<style>
+  .stats-card {
+    background-color: var(--neutral-50);
+    border-radius: 1rem;
+    padding: 1.75rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    transition: var(--transition-smooth);
+  }
+
+  .stats-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(21, 128, 61, 0.2);
+  }
+
+  .stats-icon-wrapper {
+    width: 60px;
+    height: 60px;
+    border-radius: 0.75rem;
+    background-color: rgba(21, 128, 61, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .stats-icon {
+    font-size: 2rem;
+  }
+
+  .stats-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stats-value {
+    font-size: 1.85rem;
+    font-weight: 800;
+    color: var(--primary-dark);
+    line-height: 1.2;
+    margin-bottom: 0.25rem;
+  }
+
+  .stats-label {
+    font-size: 0.95rem;
+    color: var(--neutral-600);
+    font-weight: 500;
+  }
+</style>

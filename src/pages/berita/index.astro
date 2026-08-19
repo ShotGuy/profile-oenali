@@ -1,0 +1,93 @@
+---
+// src/pages/berita/index.astro
+import Layout from '../../layouts/Layout.astro';
+import NewsCard from '../../components/NewsCard.astro';
+import { getCollection } from 'astro:content';
+
+// Ambil semua file berita dari collections, urutkan berdasarkan tanggal (atau biarkan default)
+const allNews = await getCollection('berita');
+---
+
+<Layout title="Kabar Desa">
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container header-container">
+      <span class="badge">Informasi Terkini</span>
+      <h1>Kabar Desa Persiapan Oenali</h1>
+      <p>Ikuti perkembangan berita seputar aktivitas warga, pembangunan fisik, dan pengumuman administratif desa.</p>
+    </div>
+  </section>
+
+  <!-- News List Section -->
+  <section class="section">
+    <div class="container">
+      {allNews.length === 0 ? (
+        <div class="no-news">
+          <span class="no-news-icon">📭</span>
+          <p>Belum ada berita yang diterbitkan saat ini.</p>
+        </div>
+      ) : (
+        <div class="news-list-grid">
+          {allNews.map(news => (
+            <NewsCard 
+              title={news.data.title}
+              date={news.data.date}
+              summary={news.data.summary}
+              image={news.data.image}
+              url={`/berita/${news.slug}`}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Header styling */
+  .page-header {
+    background: linear-gradient(135deg, rgba(21, 128, 61, 0.08) 0%, rgba(248, 250, 252, 1) 100%);
+    padding: 5rem 0;
+    text-align: center;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.5);
+  }
+
+  .header-container h1 {
+    font-size: 2.75rem;
+    color: var(--primary-dark);
+    margin: 1rem 0;
+  }
+
+  .header-container p {
+    font-size: 1.15rem;
+    max-width: 600px;
+    margin: 0 auto;
+    color: var(--neutral-600);
+  }
+
+  /* News Grid */
+  .news-list-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2.5rem;
+  }
+
+  .no-news {
+    text-align: center;
+    padding: 5rem 2rem;
+    background-color: var(--neutral-50);
+    border-radius: 1rem;
+    border: 1px dashed rgba(226, 232, 240, 1);
+  }
+
+  .no-news-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .no-news p {
+    font-size: 1.1rem;
+    color: var(--neutral-600);
+  }
+</style>

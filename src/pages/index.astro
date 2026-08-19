@@ -1,0 +1,292 @@
+---
+// src/pages/index.astro
+import Layout from '../layouts/Layout.astro';
+import StatsCard from '../components/StatsCard.astro';
+import NewsCard from '../components/NewsCard.astro';
+
+// Placeholder data berita
+const recentNews = [
+  {
+    title: "Sosialisasi Pemekaran dan Batas Wilayah Desa Persiapan Oenali",
+    date: "15 Agustus 2026",
+    summary: "Pemerintah Desa Induk bersama Penjabat Kepala Desa Persiapan Oenali menyelenggarakan sosialisasi penetapan pilar batas wilayah administratif guna kelancaran proses definitif desa.",
+    url: "/berita",
+  },
+  {
+    title: "Musyawarah Warga Terkait Rencana Pembangunan Kantor Desa Sementara",
+    date: "10 Agustus 2026",
+    summary: "Warga Desa Persiapan Oenali sepakat melakukan gotong royong dalam penyiapan lahan untuk mendirikan gedung operasional pelayanan administrasi masyarakat.",
+    url: "/berita",
+  },
+  {
+    title: "Kegiatan Bakti Sosial dan Pemeriksaan Kesehatan Gratis Warga Oenali",
+    date: "05 Agustus 2026",
+    summary: "Sebagai wujud kepedulian terhadap kesejahteraan masyarakat di wilayah pemekaran baru, diadakan layanan cek kesehatan gratis di posko terpadu desa.",
+    url: "/berita",
+  }
+];
+---
+
+<Layout title="Beranda">
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container hero-container">
+      <div class="hero-text-content">
+        <span class="badge">Menuju Desa Definitif</span>
+        <h1 class="hero-title">Selamat Datang di Website Resmi <span class="highlight">Desa Persiapan Oenali</span></h1>
+        <p class="hero-description">
+          Gerbang informasi transparan, layanan publik terintegrasi, dan wadah aspirasi masyarakat dalam proses pemekaran menjadi desa mandiri di bawah naungan Kecamatan Oenali.
+        </p>
+        <div class="hero-buttons">
+          <a href="/tentang" class="btn btn-primary">Profil Desa</a>
+          <a href="/layanan" class="btn btn-secondary">Layanan Warga</a>
+        </div>
+      </div>
+      <div class="hero-image-container">
+        <!-- Placeholder visual desa -->
+        <div class="image-mockup">
+          <span class="mockup-text">Foto Lanskap/Pemandangan Desa Oenali</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sambutan Pj Kepala Desa -->
+  <section class="section section-alt">
+    <div class="container welcome-container">
+      <div class="leader-photo-wrapper">
+        <div class="leader-photo-mock">
+          <span class="photo-icon">👨‍💼</span>
+        </div>
+      </div>
+      <div class="welcome-text-content">
+        <span class="welcome-label">SAMBUTAN PENJABAT KEPALA DESA</span>
+        <h2>Membangun Fondasi Masa Depan Desa Persiapan Oenali</h2>
+        <p>
+          "Salam sejahtera bagi seluruh warga Desa Persiapan Oenali. Kehadiran website ini merupakan wujud keterbukaan informasi dan komitmen kami untuk mempermudah pelayanan bagi warga selama masa transisi dari desa induk."
+        </p>
+        <p>
+          "Meskipun saat ini status administrasi kita masih dalam tahap persiapan, semangat kebersamaan dan gotong royong kita harus tetap kuat untuk segera menyusul menjadi desa definitif yang maju dan mandiri."
+        </p>
+        <span class="leader-signature">
+          <strong>Yohanis L. Doe, S.Sos</strong>
+          <span class="leader-title">Penjabat Kepala Desa Persiapan Oenali</span>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Statistik Cepat -->
+  <section class="section">
+    <div class="container">
+      <div class="section-title-wrapper">
+        <h2 class="section-title">Statistik Desa</h2>
+        <p class="section-subtitle">Gambaran umum data demografi dan geografis wilayah Desa Persiapan Oenali.</p>
+      </div>
+
+      <div class="stats-grid">
+        <StatsCard value="1,240" label="Total Penduduk" icon="👥" />
+        <StatsCard value="312" label="Kepala Keluarga (KK)" icon="🏠" />
+        <StatsCard value="12.5 km²" label="Luas Wilayah" icon="🗺️" />
+        <StatsCard value="4" label="Dusun/RT Sementara" icon="📍" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Kabar Desa Terkini -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-title-wrapper">
+        <h2 class="section-title">Kabar Desa Terbaru</h2>
+        <p class="section-subtitle">Ikuti berita, pengumuman terbaru, dan progres kegiatan kemasyarakatan kami.</p>
+      </div>
+
+      <div class="news-grid">
+        {recentNews.map(news => (
+          <NewsCard 
+            title={news.title}
+            date={news.date}
+            summary={news.summary}
+            url={news.url}
+          />
+        ))}
+      </div>
+
+      <div class="center-button-wrapper">
+        <a href="/berita" class="btn btn-secondary">Lihat Semua Berita</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Hero styles */
+  .hero-section {
+    padding: 6rem 0;
+    background: linear-gradient(135deg, rgba(21, 128, 61, 0.05) 0%, rgba(255,255,255,1) 100%);
+    border-bottom: 1px solid rgba(226, 232, 240, 0.5);
+  }
+
+  .hero-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .hero-title {
+    font-size: 3rem;
+    line-height: 1.15;
+    margin: 1rem 0 1.5rem 0;
+  }
+
+  .hero-title .highlight {
+    color: var(--primary);
+  }
+
+  .hero-description {
+    font-size: 1.15rem;
+    color: var(--neutral-700);
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .hero-image-container {
+    width: 100%;
+    height: 400px;
+  }
+
+  .image-mockup {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(21, 128, 61, 0.15) 0%, rgba(245, 158, 11, 0.15) 100%);
+    border: 2px dashed rgba(21, 128, 61, 0.3);
+    border-radius: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-dark);
+    font-weight: 700;
+  }
+
+  /* Welcome section styles */
+  .welcome-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .leader-photo-wrapper {
+    display: flex;
+    justify-content: center;
+  }
+
+  .leader-photo-mock {
+    width: 250px;
+    height: 320px;
+    background-color: var(--neutral-100);
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(226, 232, 240, 1);
+  }
+
+  .photo-icon {
+    font-size: 6rem;
+  }
+
+  .welcome-label {
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    color: var(--primary);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .welcome-text-content h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .welcome-text-content p {
+    font-size: 1.05rem;
+    color: var(--neutral-700);
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+
+  .leader-signature {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    border-left: 3px solid var(--accent);
+    padding-left: 1rem;
+  }
+
+  .leader-signature strong {
+    font-size: 1.15rem;
+    color: var(--neutral-900);
+  }
+
+  .leader-title {
+    font-size: 0.85rem;
+    color: var(--neutral-600);
+    font-weight: 600;
+  }
+
+  /* Stats and News Grid */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2rem;
+  }
+
+  .news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .center-button-wrapper {
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Responsive breakpoints */
+  @media (max-width: 992px) {
+    .hero-container {
+      grid-template-columns: 1fr;
+      text-align: center;
+      gap: 3rem;
+    }
+
+    .hero-buttons {
+      justify-content: center;
+    }
+
+    .hero-image-container {
+      height: 300px;
+    }
+
+    .welcome-container {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      text-align: center;
+    }
+
+    .leader-signature {
+      border-left: none;
+      padding-left: 0;
+      align-items: center;
+    }
+  }
+</style>

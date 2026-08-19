@@ -1,0 +1,52 @@
+---
+// src/layouts/Layout.astro
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Website Resmi Desa Persiapan Oenali. Dapatkan informasi terkini mengenai pelayanan, administrasi, berita, dan pembangunan desa." } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- Primary Meta Tags -->
+    <title>{title} | Desa Persiapan Oenali</title>
+    <meta name="title" content={`${title} | Desa Persiapan Oenali`} />
+    <meta name="description" content={description} />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={`${title} | Desa Persiapan Oenali`} />
+    <meta property="og:description" content={description} />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content={`${title} | Desa Persiapan Oenali`} />
+    <meta property="twitter:description" content={description} />
+  </head>
+  <body>
+    <Navbar />
+    <main class="main-content">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  .main-content {
+    flex-grow: 1;
+    min-height: calc(100vh - var(--header-height) - 400px); /* Adjust based on navbar/footer height */
+  }
+</style>

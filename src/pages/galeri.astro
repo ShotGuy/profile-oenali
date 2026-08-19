@@ -1,0 +1,165 @@
+---
+// src/pages/galeri.astro
+import Layout from '../layouts/Layout.astro';
+
+const photos = [
+  { id: 1, category: "Kegiatan", label: "Musyawarah Pembentukan Desa" },
+  { id: 2, category: "Pembangunan", label: "Gotong Royong Pembukaan Jalan" },
+  { id: 3, category: "Alam", label: "Lanskap Perbukitan Oenali" },
+  { id: 4, category: "Kegiatan", label: "Bakti Sosial Kesehatan Gratis" },
+  { id: 5, category: "Pembangunan", label: "Pemasangan Pilar Batas Desa" },
+  { id: 6, category: "Alam", label: "Potensi Lahan Pertanian Desa" },
+];
+---
+
+<Layout title="Galeri Foto">
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container header-container">
+      <span class="badge">Dokumentasi</span>
+      <h1>Galeri Kegiatan & Keindahan Desa</h1>
+      <p>Kumpulan dokumentasi pembangunan, kegiatan sosial kemasyarakatan, serta potensi alam Desa Persiapan Oenali.</p>
+    </div>
+  </section>
+
+  <!-- Gallery Grid -->
+  <section class="section">
+    <div class="container">
+      <div class="gallery-filter">
+        <button class="filter-btn active">Semua</button>
+        <button class="filter-btn">Kegiatan</button>
+        <button class="filter-btn">Pembangunan</button>
+        <button class="filter-btn">Keindahan Alam</button>
+      </div>
+
+      <div class="gallery-grid">
+        {photos.map(photo => (
+          <div class="gallery-item">
+            <div class="gallery-image-placeholder">
+              <span class="gallery-icon">📷</span>
+              <span class="gallery-category-badge">{photo.category}</span>
+            </div>
+            <div class="gallery-info">
+              <h3>{photo.label}</h3>
+              <p>Dokumentasi Desa Oenali</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Header styling */
+  .page-header {
+    background: linear-gradient(135deg, rgba(21, 128, 61, 0.08) 0%, rgba(248, 250, 252, 1) 100%);
+    padding: 5rem 0;
+    text-align: center;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.5);
+  }
+
+  .header-container h1 {
+    font-size: 2.75rem;
+    color: var(--primary-dark);
+    margin: 1rem 0;
+  }
+
+  .header-container p {
+    font-size: 1.15rem;
+    max-width: 600px;
+    margin: 0 auto;
+    color: var(--neutral-600);
+  }
+
+  /* Gallery Filter */
+  .gallery-filter {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    background-color: var(--neutral-50);
+    border: 1px solid rgba(226, 232, 240, 1);
+    color: var(--neutral-700);
+    padding: 0.5rem 1.25rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+  }
+
+  .filter-btn.active, .filter-btn:hover {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: white;
+  }
+
+  /* Gallery Grid */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .gallery-item {
+    background-color: var(--neutral-50);
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    transition: var(--transition-smooth);
+  }
+
+  .gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .gallery-image-placeholder {
+    height: 240px;
+    background: linear-gradient(135deg, var(--neutral-100) 0%, rgba(21, 128, 61, 0.04) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .gallery-icon {
+    font-size: 3.5rem;
+  }
+
+  .gallery-category-badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background-color: rgba(15, 23, 42, 0.75);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 0.5rem;
+    backdrop-filter: blur(4px);
+  }
+
+  .gallery-info {
+    padding: 1.25rem 1.5rem;
+  }
+
+  .gallery-info h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+    color: var(--neutral-900);
+  }
+
+  .gallery-info p {
+    font-size: 0.85rem;
+    color: var(--neutral-600);
+    margin-bottom: 0;
+  }
+</style>

@@ -1,0 +1,141 @@
+---
+// src/pages/berita/[...slug].astro
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const newsEntries = await getCollection('berita');
+  return newsEntries.map(entry => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<Layout title={entry.data.title} description={entry.data.summary}>
+  <article class="single-news-section">
+    <div class="container article-container">
+      <a href="/berita" class="back-link">&larr; Kembali ke Kabar Desa</a>
+      
+      <div class="article-meta">
+        <span class="badge">Kabar Desa</span>
+        <span class="article-date">{entry.data.date}</span>
+      </div>
+
+      <h1 class="article-title">{entry.data.title}</h1>
+      
+      <div class="article-image-placeholder">
+        <span class="image-icon">🖼️</span>
+        <span class="image-label">Ilustrasi Berita: {entry.data.title}</span>
+      </div>
+
+      <div class="article-content">
+        <Content />
+      </div>
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .single-news-section {
+    padding: 4rem 0 6rem 0;
+  }
+
+  .article-container {
+    max-width: 800px;
+  }
+
+  .back-link {
+    display: inline-block;
+    color: var(--primary);
+    font-weight: 600;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+  }
+
+  .back-link:hover {
+    color: var(--primary-dark);
+    transform: translateX(-4px);
+  }
+
+  .article-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .article-date {
+    font-size: 0.9rem;
+    color: var(--neutral-600);
+    font-weight: 500;
+  }
+
+  .article-title {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    color: var(--neutral-900);
+    margin-bottom: 2rem;
+  }
+
+  .article-image-placeholder {
+    height: 400px;
+    background: linear-gradient(135deg, rgba(21, 128, 61, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
+    border-radius: 1rem;
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    color: var(--neutral-700);
+    margin-bottom: 3rem;
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .article-image-placeholder .image-icon {
+    font-size: 4rem;
+  }
+
+  .article-image-placeholder .image-label {
+    font-weight: 700;
+  }
+
+  /* Style rendered markdown content */
+  .article-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--neutral-800);
+  }
+
+  .article-content :global(h2) {
+    font-size: 1.75rem;
+    color: var(--primary-dark);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .article-content :global(h3) {
+    font-size: 1.35rem;
+    color: var(--neutral-900);
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .article-content :global(p) {
+    margin-bottom: 1.5rem;
+  }
+
+  .article-content :global(ul), .article-content :global(ol) {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+  }
+
+  .article-content :global(li) {
+    margin-bottom: 0.5rem;
+  }
+</style>
