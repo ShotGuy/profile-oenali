@@ -34,6 +34,40 @@ const { title, description = "Website Resmi Desa Persiapan Oenali. Dapatkan info
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:title" content={`${title} | Desa Persiapan Oenali`} />
     <meta property="twitter:description" content={description} />
+
+    <!-- JSON-LD Structured Data for Google SEO & Sitelinks -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Desa Persiapan Oenali",
+        "url": "https://oenali.web.id",
+        "description": "Website Resmi Desa Persiapan Oenali, Kecamatan Amanuban Barat, Kabupaten Timor Tengah Selatan."
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "GovernmentOrganization",
+        "name": "Pemerintah Desa Persiapan Oenali",
+        "alternateName": "Desa Persiapan Oenali",
+        "url": "https://oenali.web.id",
+        "logo": "https://oenali.web.id/logo.jpg",
+        "description": "Pelayanan publik transisi dan informasi resmi pembangunan Desa Persiapan Oenali.",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Mnelalete",
+          "addressLocality": "Kec. Amanuban Barat",
+          "addressRegion": "Kab. Timor Tengah Selatan, Nusa Tenggara Timur",
+          "addressCountry": "ID"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+62-812-3456-7890",
+          "contactType": "customer service"
+        }
+      }
+    </script>
   </head>
   <body>
     <Navbar />
