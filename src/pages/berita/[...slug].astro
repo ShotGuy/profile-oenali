@@ -1,18 +1,18 @@
 ---
 // src/pages/berita/[...slug].astro
 import Layout from '../../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
   const newsEntries = await getCollection('berita');
   return newsEntries.map(entry => ({
-    params: { slug: entry.slug },
+    params: { slug: entry.id },
     props: { entry },
   }));
 }
 
 const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { Content } = await render(entry);
 
 const formattedDate = entry.data.date.toLocaleDateString('id-ID', {
   year: 'numeric',

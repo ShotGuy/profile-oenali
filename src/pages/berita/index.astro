@@ -34,7 +34,7 @@ const allNews = await getCollection('berita');
               date={news.data.date}
               summary={news.data.summary}
               image={news.data.image}
-              url={`/berita/${news.slug}`}
+              url={`/berita/${news.id}`}
             />
           ))}
         </div>

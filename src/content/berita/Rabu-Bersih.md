@@ -17,12 +17,5 @@ Fusce condimentum tempor libero, ut tempor quam pulvinar vel. Praesent nec metus
 
 Etiam faucibus lorem bibendum justo tempor, nec hendrerit magna consequat. Fusce a orci ac felis ornare eleifend et sed erat. Aliquam feugiat est et nibh fringilla aliquet. Donec et scelerisque sapien. Suspendisse commodo sagittis enim, eu facilisis felis. Sed cursus rhoncus elit, in molestie lacus maximus ut. Nulla ut justo turpis. Vestibulum consequat fermentum justo, ut lobortis odio euismod a. Praesent non libero nec quam pellentesque vehicula. Nulla justo neque, iaculis ut malesuada at, bibendum pretium justo. Nullam a mauris cursus, accumsan odio mattis, condimentum eros. In id diam efficitur, fermentum nunc a, sollicitudin ipsum.
 
-```mermaid
-%% This won't render without implementing a rendering engine (e.g. mermaid on npm)
-flowchart TD
-    id1(this is an example flow diagram)
-    --> id2(modify me to see changes!)
-    id2
-    --> id3(Click the top button to preview the changes)
-    --> id4(Learn about mermaid diagrams - mermaid.js.org)
+```plaintext
 ```
