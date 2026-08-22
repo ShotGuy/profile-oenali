@@ -1,0 +1,28 @@
+---
+title: Rabu Bersih
+date: 2026-07-28T10:32:49.752Z
+summary: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam interdum tellus ut lorem iaculis, ut porttitor erat sagittis. Donec quam lectus, mollis sit amet lectus id, pharetra fringilla ex. Morbi accumsan, velit et sagittis ultricies, urna turpis porta velit, egestas pellentesque ligula dolor et augue. Aliquam turpis ex, commodo eget purus a, consectetur porta erat. Donec id vestibulum diam. Vestibulum felis metus, maximus non rhoncus id, hendrerit quis nibh. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a ante volutpat, sagittis mi nec, pretium eros. Cras ac purus gravida, ultricies nisi eu, ornare dui.'
+image: /IMG_20260707_102856.jpg
+---
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eu condimentum nibh. Ut laoreet, velit at scelerisque hendrerit, libero nulla porttitor mi, ut venenatis metus libero non elit. Integer rutrum dui posuere pharetra maximus. Nam facilisis scelerisque sapien at maximus. Pellentesque scelerisque libero elit, non semper quam sollicitudin vel. Mauris urna augue, elementum id pretium vitae, posuere nec augue. Fusce eros leo, varius non justo vel, pharetra consequat erat. Integer vitae dictum ligula. Nam id arcu vel augue rutrum maximus. Nunc et ante diam. Nulla eu justo vel urna ullamcorper mollis.
+
+Suspendisse potenti. Donec aliquam cursus urna, id faucibus libero venenatis et. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus eu imperdiet ligula. Donec ornare mollis fringilla. Aliquam erat volutpat. Nulla facilisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean porttitor arcu et diam porttitor consequat. Fusce mauris neque, mattis at eros non, efficitur finibus elit.
+
+Nam mattis dapibus tortor nec auctor. Morbi non justo enim. Aliquam eleifend nunc at felis efficitur malesuada. Maecenas pharetra enim at magna feugiat consequat ac at nunc. Praesent pretium felis nisi, sed ornare dui accumsan quis. Morbi at orci nunc. Donec tempus efficitur arcu, a sodales purus tincidunt vitae. Morbi mi est, tincidunt eget arcu eu, fermentum fringilla nunc. Proin elementum est quis accumsan iaculis. Integer interdum erat ut ipsum finibus semper. Quisque feugiat quis nisi eu condimentum. Phasellus dignissim erat sapien, eu semper mauris malesuada sit amet. Pellentesque nec orci quam. Suspendisse nec augue non nunc tempor efficitur. Aliquam molestie, libero eu pharetra tempus, tortor mi congue leo, quis dignissim libero nunc eu elit. Pellentesque sollicitudin massa tellus, ac dignissim sapien convallis ut.
+
+Praesent sollicitudin, ex non egestas ullamcorper, leo tellus interdum lorem, ac rutrum justo leo non magna. Duis tempor interdum elit, sed molestie lorem rutrum id. Sed laoreet mollis dolor, vitae dictum risus congue in. Vivamus facilisis accumsan urna, sed hendrerit massa tristique posuere. Sed feugiat nunc rhoncus, dapibus dui sed, molestie orci. Etiam convallis massa massa, ut pretium justo lobortis a. Nulla facilisi. Vestibulum ut rhoncus tortor, et tristique elit.
+
+Fusce condimentum tempor libero, ut tempor quam pulvinar vel. Praesent nec metus ac odio laoreet blandit. Aliquam tincidunt lacus sed consectetur rhoncus. Nam id tincidunt magna. Fusce tincidunt neque in malesuada semper. Fusce gravida mauris in dolor lobortis, nec volutpat justo pretium. Nullam ultricies tempor volutpat. Suspendisse nec ante ut diam semper mollis. Nulla scelerisque quis justo at semper. In tristique odio at pellentesque fringilla. Etiam sollicitudin, sapien sed finibus consequat, erat sem porttitor lorem, non rhoncus urna tellus a velit. Cras nec egestas urna, et porttitor augue. Sed aliquam, ex vel congue posuere, diam massa iaculis magna, et egestas quam nunc vel libero.
+
+Etiam faucibus lorem bibendum justo tempor, nec hendrerit magna consequat. Fusce a orci ac felis ornare eleifend et sed erat. Aliquam feugiat est et nibh fringilla aliquet. Donec et scelerisque sapien. Suspendisse commodo sagittis enim, eu facilisis felis. Sed cursus rhoncus elit, in molestie lacus maximus ut. Nulla ut justo turpis. Vestibulum consequat fermentum justo, ut lobortis odio euismod a. Praesent non libero nec quam pellentesque vehicula. Nulla justo neque, iaculis ut malesuada at, bibendum pretium justo. Nullam a mauris cursus, accumsan odio mattis, condimentum eros. In id diam efficitur, fermentum nunc a, sollicitudin ipsum.
+
+```mermaid
+%% This won't render without implementing a rendering engine (e.g. mermaid on npm)
+flowchart TD
+    id1(this is an example flow diagram)
+    --> id2(modify me to see changes!)
+    id2
+    --> id3(Click the top button to preview the changes)
+    --> id4(Learn about mermaid diagrams - mermaid.js.org)
+```

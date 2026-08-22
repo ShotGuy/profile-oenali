@@ -13,6 +13,12 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await entry.render();
+
+const formattedDate = entry.data.date.toLocaleDateString('id-ID', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
 ---
 
 <Layout title={entry.data.title} description={entry.data.summary}>
@@ -22,15 +28,21 @@ const { Content } = await entry.render();
       
       <div class="article-meta">
         <span class="badge">Kabar Desa</span>
-        <span class="article-date">{entry.data.date}</span>
+        <span class="article-date">{formattedDate}</span>
       </div>
 
       <h1 class="article-title">{entry.data.title}</h1>
       
-      <div class="article-image-placeholder">
-        <span class="image-icon">🖼️</span>
-        <span class="image-label">Ilustrasi Berita: {entry.data.title}</span>
-      </div>
+      {entry.data.image ? (
+        <div style="margin-bottom: 3rem; border-radius: 1rem; overflow: hidden; box-shadow: var(--shadow-sm);">
+          <img src={entry.data.image} alt={entry.data.title} style="width: 100%; height: auto; max-height: 500px; object-fit: cover;" />
+        </div>
+      ) : (
+        <div class="article-image-placeholder">
+          <span class="image-icon">🖼️</span>
+          <span class="image-label">Ilustrasi Berita: {entry.data.title}</span>
+        </div>
+      )}
 
       <div class="article-content">
         <Content />

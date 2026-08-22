@@ -2,13 +2,19 @@
 // src/components/NewsCard.astro
 interface Props {
   title: string;
-  date: string;
+  date: Date;
   summary: string;
   image?: string;
   url: string;
 }
 
 const { title, date, summary, image, url } = Astro.props;
+
+const formattedDate = date.toLocaleDateString('id-ID', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
 ---
 
 <article class="news-card">
@@ -20,7 +26,7 @@ const { title, date, summary, image, url } = Astro.props;
         <span class="placeholder-icon">📰</span>
       </div>
     )}
-    <span class="card-date-badge">{date}</span>
+    <span class="card-date-badge">{formattedDate}</span>
   </div>
   
   <div class="card-content">

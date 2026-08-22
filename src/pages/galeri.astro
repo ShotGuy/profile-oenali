@@ -1,8 +1,9 @@
 ---
 // src/pages/galeri.astro
 import Layout from '../layouts/Layout.astro';
+import galeriData from '../data/galeri.json';
 
-const photos = [];
+const photos = galeriData.photos || [];
 ---
 
 <Layout title="Galeri Foto">
@@ -35,11 +36,15 @@ const photos = [];
           {photos.map(photo => (
             <div class="gallery-item">
               <div class="gallery-image-placeholder">
-                <span class="gallery-icon">📷</span>
+                {photo.imageUrl ? (
+                  <img src={photo.imageUrl} alt={photo.title} style="width: 100%; height: 100%; object-fit: cover;" />
+                ) : (
+                  <span class="gallery-icon">📷</span>
+                )}
                 <span class="gallery-category-badge">{photo.category}</span>
               </div>
               <div class="gallery-info">
-                <h3>{photo.label}</h3>
+                <h3>{photo.title}</h3>
                 <p>Dokumentasi Desa Oenali</p>
               </div>
             </div>

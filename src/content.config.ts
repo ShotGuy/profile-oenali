@@ -5,7 +5,7 @@ const beritaCollection = defineCollection({
   loader: glob({ pattern: '**/[^_]*.md', base: "./src/content/berita" }),
   schema: z.object({
     title: z.string(),
-    date: z.string(),
+    date: z.coerce.date(),
     summary: z.string(),
     image: z.string().optional(),
   }),
